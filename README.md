@@ -8,10 +8,10 @@ $token = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
 ```
 [See how to get API Key and Token](get-key-token.md)
 
-## Boards
+## User
 ```php
 
-$trelloBoard = new TrelloBoard($key, $token);
+$trelloBoard = new Trello\User($key, $token);
 $boardId = 'xxxxxxxxxxxxxxxxxxxxxxxx';
 
 // Getting board info
@@ -21,7 +21,28 @@ $return = $trelloBoard->get($boardId);
 $return = $trelloBoard->get($boardId, 'members');
 
 // Getting list of cards from board
-$arguments = array('fields' => 'id,name,idList');
+$arguments = array(
+    'fields' => 'id,name,idList'
+);
+$return = $trelloBoard->get($boardId, 'cards', $arguments);
+```
+
+## Boards
+```php
+
+$trelloBoard = new Trello\Board($key, $token);
+$boardId = 'xxxxxxxxxxxxxxxxxxxxxxxx';
+
+// Getting board info
+$return = $trelloBoard->get($boardId);
+
+// Getting list of members from board
+$return = $trelloBoard->get($boardId, 'members');
+
+// Getting list of cards from board
+$arguments = array(
+    'fields' => 'id,name,idList'
+);
 $return = $trelloBoard->get($boardId, 'cards', $arguments);
 ```
 
@@ -29,7 +50,7 @@ $return = $trelloBoard->get($boardId, 'cards', $arguments);
 
 ## Cards
 ```php
-$trelloCard = new TrelloCard($key, $token);
+$trelloCard = new Trello\Card($key, $token);
 $cardId = 'xxxxxxxxxxxxxxxxxxxxxxxx';
 
 // Getting Card Info
